@@ -16,3 +16,9 @@ Crear la carpeta `contracts` y los contartos dentro.
 ```bash
 npx hardhat compile
 ```
+
+Contratos para nuestro proyecto
+
+```bash
+npm install --save-dev @openzeppelin/contracts
+```

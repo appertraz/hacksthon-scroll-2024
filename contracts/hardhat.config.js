@@ -3,9 +3,7 @@ require("@nomicfoundation/hardhat-verify");
 require("@nomicfoundation/hardhat-ethers");
 require("dotenv").config();
 
-const ARBITRUM_SEPOLIA_RPC_URL = "https://arb-sepolia.g.alchemy.com/v2/2YZy6xrTQngHbeUINCmc1vAL5qyGw9BP";
-const WALLET_PRIVATE_KEY = "68308dd58f1678c483e59d256a147a6dced6bd417fbcbaa406130259ecac0c49";
-const ARBISCAN_API_KEY = "1m6bCkuN_9J6QIOv6C2AIj-NjfH0G9we";
+const { WALLET_PRIVATE_KEY, SCROLLSCAN_API_KEY } = process.env;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -36,30 +34,31 @@ module.exports = {
       },
     },
   },
+  /**
+   * https://docs.scroll.io/en/developers/verifying-smart-contracts/
+   * https://sepolia.scrollscan.com
+   */
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {},
-    arbitrumSepolia: {
-      url: ARBITRUM_SEPOLIA_RPC_URL,
-      accounts: [`0x${WALLET_PRIVATE_KEY}`],
+    scrollSepolia: {
+      url: "https://sepolia-rpc.scroll.io",
+      accounts: WALLET_PRIVATE_KEY !== undefined ? [WALLET_PRIVATE_KEY] : [],
     },
   },
   etherscan: {
     apiKey: {
-      arbitrumSepolia: ARBISCAN_API_KEY,
+      scrollSepolia: SCROLLSCAN_API_KEY,
     },
     customChains: [
       {
-        network: "arbitrumSepolia",
-        chainId: 421614,
+        network: "scrollSepolia",
+        chainId: 534351,
         urls: {
-          apiURL: "https://api-testnet.arbiscan.io/api",
-          browserURL: "https://testnet.arbiscan.io",
+          apiURL: "https://api-sepolia.scrollscan.com/api",
+          browserURL: "https://sepolia.scrollscan.com/",
         },
       },
     ],
-  },
-  sourcify: {
-    enabled: true,
   },
 };

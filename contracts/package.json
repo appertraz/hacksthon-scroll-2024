@@ -8,26 +8,23 @@
     "coverage": "hardhat coverage",
     "compile": "hardhat compile",
     "localhost:launch": "hardhat node",
-    "localhost:test": "REPORT_GAS=true hardhat test --network localhost",
     "localhost:deploy": "hardhat run scripts/deploy.js --network localhost",
-    "deploy": "hardhat run scripts/deploy.js --network 'arbitrumSepolia'",
-    "factory": "hardhat run scripts/factory.js --network 'arbitrumSepolia'",
-    "store": "hardhat run scripts/store.js --network 'arbitrumSepolia'",
-    "mint": "hardhat run scripts/mint.js --network 'arbitrumSepolia'",
-    "verify": "hardhat verify --network 'arbitrumSepolia' '0xeD31c84F01Ed2BDC759EdD38fb87472D274b1465'",
-    "sourcify": "hardhat sourcify --network 'arbitrumSepolia'"
+    "localhost:test": "REPORT_GAS=true hardhat test --network localhost",
+    "deploy": "hardhat run scripts/deploy.js --network scrollSepolia",
+    "factory": "hardhat run scripts/factory.js --network scrollSepolia",
+    "store": "node scripts/store.js",
+    "mint": "hardhat run scripts/mint.js --network scrollSepolia",
+    "verify": "hardhat verify --network scrollSepolia '0x04C3BD6d34059dF62443fd3FE2eeDEf18caE8BaE'"
   },
-  "devDependencies": {
+  "dependencies": {
     "@nomicfoundation/hardhat-ethers": "3.0.5",
     "@nomicfoundation/hardhat-toolbox": "5.0.0",
     "@nomicfoundation/hardhat-verify": "2.0.1",
+    "@nomiclabs/hardhat-etherscan": "3.1.8",
     "@openzeppelin/contracts": "5.0.2",
     "dotenv": "16.3.1",
-    "ethers": "6.9.0",
+    "ethers": "6.13.2",
     "hardhat": "2.22.7",
     "solidity-coverage": "0.8.5"
-  },
-  "dependencies": {
-    "ethers": "6.13.2"
   }
 }

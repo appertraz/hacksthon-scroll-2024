@@ -73,7 +73,7 @@ export default function Home() {
         <div className="flex justify-center mt-20 mb-20">
           <input
             type="text"
-            placeholder="Nombre del cliente "
+            placeholder="Nombre del cliente"
             className="p-2 w-2/3 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none "
           />
           <button className="p-2 bg-green-600 rounded-r-lg hover:bg-green-700 ">Agregar cliente</button>

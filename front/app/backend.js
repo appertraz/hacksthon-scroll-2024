@@ -7,15 +7,16 @@ function serializer(key, value) {
 
 function useStorage(type = "local") {
   const storage = `${type}Storage`; /* local | session */
+  const obj = typeof window !== "undefined" ? window : {};
 
   const toStore = (obj) => JSON.stringify(obj, serializer);
   const fromStore = (str) => (str ? JSON.parse(str) : undefined);
 
-  const get = (key) => fromStore(window?.[storage]?.getItem(key));
-  const set = (key, value) => window?.[storage]?.setItem(key, toStore(value));
+  const get = (key) => fromStore(obj?.[storage]?.getItem(key));
+  const set = (key, value) => obj?.[storage]?.setItem(key, toStore(value));
 
-  const remove = (key) => window?.[storage]?.removeItem(key);
-  const clear = () => window?.[storage]?.clear();
+  const remove = (key) => obj?.[storage]?.removeItem(key);
+  const clear = () => obj?.[storage]?.clear();
 
   const pop = (key) => {
     const value = get(key);
@@ -74,6 +75,15 @@ export function newClient(name) {
     lots: [],
   });
   DB.set("clients", clients);
+}
+
+export function getClient(clientId) {
+  const clients = DB.get("clients") || [];
+  const filteredClient = clients.filter((client) => client.id === clientId);
+  if (filteredClient.length === 0) {
+    throw new Error("Client not found");
+  }
+  return filteredClient[0];
 }
 
 function setClient(clientId, field, value) {
@@ -148,7 +158,7 @@ export function setLotStatus(clientId, lotId, status) {
 
 //-------------------------------------
 
-function listFile(clientId, lotId) {
+export function listFiles(clientId, lotId) {
   const clients = DB.get("clients") || [];
   const filteredClient = clients.filter((client) => client.id === clientId);
   if (filteredClient.length === 0) {
@@ -161,7 +171,7 @@ function listFile(clientId, lotId) {
   return filteredLot[0].files;
 }
 
-function addFile(clientId, lotId, files) {
+export function addFile(clientId, lotId, files) {
   const clients = DB.get("clients") || [];
   const filteredClient = clients.filter((client) => client.id === clientId);
   if (filteredClient.length === 0) {

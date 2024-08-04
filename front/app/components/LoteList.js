@@ -1,4 +1,7 @@
+"use client";
+
 import { useRouter } from "next/navigation";
+import { DB } from "../backend";
 
 const STATUS = {
   loading: "Sin finalizar",
@@ -11,7 +14,10 @@ const Lote = ({ id, name, status }) => {
   return (
     <div
       className="flex items-center bg-gray-800 p-4 rounded-lg cursor-pointer"
-      onClick={() => router.push(`/vista3?lid=${id}`)}>
+      onClick={() => {
+        DB.set("lid", id);
+        router.push(`/lot`);
+      }}>
       <span className="flex-1">{name}</span>
       <span className="text-gray-500">4/8/2024</span>
       <button className="ml-4 p-2 bg-gray-700 text-white rounded-lg">{STATUS[status]}</button>

@@ -1,5 +1,10 @@
-.env
+.env*
 
 node_modules/
 artifacts/
+coverage/
 cache/
+
+coverage.json
+
+contracts/contracts/*.abi

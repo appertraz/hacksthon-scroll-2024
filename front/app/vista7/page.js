@@ -1,6 +1,9 @@
+"use client";
+
 // front/app/verificador-archivos/page.js
-import Head from 'next/head';
-import VerificadorArchivos from '../components/VerificadorArchivos';
+
+import Head from "next/head";
+import VerificadorArchivos from "../components/VerificadorArchivos";
 
 export default function VerificadorArchivosPage() {
   return (

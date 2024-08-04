@@ -26,7 +26,7 @@ function useStorage(type = "local") {
   return { get, set, remove, clear, pop };
 }
 
-const DB = useStorage("local");
+export const DB = useStorage("local");
 
 function getID() {
   return Math.random().toString(36).slice(2, 8) + (Date.now() - 1722706200000).toString();
@@ -49,6 +49,12 @@ const clients = [
         status: "loading", // loading | minting | finished
         description: "description",
         nft: "0x378E58E2033dD69927398b1979dD39eFc3123a43",
+        files: [
+          {
+            name: "file",
+            hash: "hash",
+          },
+        ],
       },
     ],
   },
@@ -138,4 +144,33 @@ export function setLotStatus(clientId, lotId, status) {
     throw new Error("Invalid status");
   }
   return setLot(clientId, lotId, "status", status);
+}
+
+//-------------------------------------
+
+function listFile(clientId, lotId) {
+  const clients = DB.get("clients") || [];
+  const filteredClient = clients.filter((client) => client.id === clientId);
+  if (filteredClient.length === 0) {
+    throw new Error("Client not found");
+  }
+  const filteredLot = filteredClient[0].lots.filter((lot) => lot.id === lotId);
+  if (filteredLot.length === 0) {
+    throw new Error("Lot not found");
+  }
+  return filteredLot[0].files;
+}
+
+function addFile(clientId, lotId, files) {
+  const clients = DB.get("clients") || [];
+  const filteredClient = clients.filter((client) => client.id === clientId);
+  if (filteredClient.length === 0) {
+    throw new Error("Client not found");
+  }
+  const filteredLot = filteredClient[0].lots.filter((lot) => lot.id === lotId);
+  if (filteredLot.length === 0) {
+    throw new Error("Lot not found");
+  }
+  filteredLot[0].files = files;
+  DB.set("clients", clients);
 }

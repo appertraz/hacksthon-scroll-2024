@@ -1,6 +1,9 @@
+"use client";
+
 // front/app/lote-listo/page.js
-import Head from 'next/head';
-import LoteListLoteListo from '../components/LoteListLoteListo';
+
+import Head from "next/head";
+import LoteListLoteListo from "../components/LoteListLoteListo";
 
 export default function LoteListo() {
   return (

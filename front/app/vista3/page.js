@@ -1,8 +1,17 @@
+"use client";
+
 // front/app/Vista3.js
-import Head from 'next/head';
-import ArchivoList from '../components/ArchivoList';
+
+import Head from "next/head";
+import { useSearchParams } from "next/navigation";
+
+import ArchivoList from "../components/ArchivoList";
+import { listLots } from "../backend";
 
 export default function Vista3() {
+  const searchParams = useSearchParams();
+  const lid = searchParams.get("lid");
+  const lots = listFile(lid);
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Head>
@@ -20,7 +29,9 @@ export default function Vista3() {
         </div>
         <div className="flex justify-center mb-4 space-x-4">
           <button className="p-2 bg-green-600 rounded-lg hover:bg-green-700">Agregar archivo</button>
-          <button className="p-2 bg-green-600 border border-blue-500 rounded-lg hover:bg-green-700">Finalizar lote</button>
+          <button className="p-2 bg-green-600 border border-blue-500 rounded-lg hover:bg-green-700">
+            Finalizar lote
+          </button>
         </div>
         <ArchivoList />
       </main>

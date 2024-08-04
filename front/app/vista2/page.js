@@ -1,8 +1,18 @@
+"use client";
 
-import Head from 'next/head';
-import LoteList from '../components/LoteList';
+import Head from "next/head";
+import { useSearchParams } from "next/navigation";
+
+import LoteList from "../components/LoteList";
+import { listLots } from "../backend";
 
 export default function Lotes() {
+  const searchParams = useSearchParams();
+  const cid = searchParams.get("cid");
+  const lots = listLots(cid);
+
+  console.log({ cid, lots }); ////////
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Head>
@@ -26,7 +36,7 @@ export default function Lotes() {
           />
           <button className="p-2 bg-green-600 rounded-r-lg hover:bg-green-700">Agregar lote</button>
         </div>
-        <LoteList />
+        <LoteList list={lots} />
       </main>
     </div>
   );

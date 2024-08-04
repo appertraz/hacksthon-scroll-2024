@@ -1,6 +1,9 @@
+"use client";
+
 // front/app/ver-nft/page.js
-import Head from 'next/head';
-import LoteListVerNFT from '../components/LoteListVerNFT';
+
+import Head from "next/head";
+import LoteListVerNFT from "../components/LoteListVerNFT";
 
 export default function VerNFT() {
   return (

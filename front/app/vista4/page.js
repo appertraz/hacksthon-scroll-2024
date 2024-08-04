@@ -1,9 +1,12 @@
+"use client";
+
 // front/app/esperando-nft/page.js
-import Head from 'next/head';
-import LoteList from '../components/LoteList';
+
+import Head from "next/head";
+import LoteList from "../components/LoteList";
 
 export default function EsperandoNFT() {
-  const estadoLote = 'esperando'; // Estado para mostrar "Esperando NFT"
+  const estadoLote = "esperando"; // Estado para mostrar "Esperando NFT"
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">

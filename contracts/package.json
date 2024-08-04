@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "contracts",
   "scripts": {
-    "compile": "npx hardhat compile"
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
